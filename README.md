@@ -3,8 +3,7 @@
 A simple, fast, and embeddable calorie calculator that converts plain text recipes into calorie and macro breakdown.
 
 ## 🚀 Live Demo
-👉 https://your-tool-link.com
-
+👉 https://imdiwaker72-source.github.io/Recipe-Calorie-Calculator-Smart-/
 ---
 
 ## 💡 Features
@@ -37,4 +36,4 @@ A simple, fast, and embeddable calorie calculator that converts plain text recip
 Copy this:
 
 ```html
-<iframe src="https://your-tool-link.com" width="100%" height="500"></iframe>
+<iframe src="https://imdiwaker72-source.github.io/Recipe-Calorie-Calculator-Smart-/" width="100%" height="500"></iframe>
