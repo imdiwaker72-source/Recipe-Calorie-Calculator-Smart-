@@ -1,121 +1,255 @@
-Creative Commons Legal Code
+Good—now we turn your basic tool into something people actually use **and** something developers/bloggers will link to.
 
-CC0 1.0 Universal
+You asked for **both**:
 
-    CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
-    LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
-    ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
-    INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
-    REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
-    PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
-    THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
-    HEREUNDER.
+1. upgraded (better, smarter tool)
+2. GitHub README that attracts backlinks
 
-Statement of Purpose
+Let’s do it properly.
 
-The laws of most jurisdictions throughout the world automatically confer
-exclusive Copyright and Related Rights (defined below) upon the creator
-and subsequent owner(s) (each and all, an "owner") of an original work of
-authorship and/or a database (each, a "Work").
+---
 
-Certain owners wish to permanently relinquish those rights to a Work for
-the purpose of contributing to a commons of creative, cultural and
-scientific works ("Commons") that the public can reliably and without fear
-of later claims of infringement build upon, modify, incorporate in other
-works, reuse and redistribute as freely as possible in any form whatsoever
-and for any purposes, including without limitation commercial purposes.
-These owners may contribute to the Commons to promote the ideal of a free
-culture and the further production of creative, cultural and scientific
-works, or to gain reputation or greater distribution for their Work in
-part through the use and efforts of others.
+# 🔥 PART 1: UPGRADED TOOL (SMART VERSION)
 
-For these and/or other purposes and motivations, and without any
-expectation of additional consideration or compensation, the person
-associating CC0 with a Work (the "Affirmer"), to the extent that he or she
-is an owner of Copyright and Related Rights in the Work, voluntarily
-elects to apply CC0 to the Work and publicly distribute the Work under its
-terms, with knowledge of his or her Copyright and Related Rights in the
-Work and the meaning and intended legal effect of CC0 on those rights.
+This version fixes the biggest weakness:
+👉 your current tool ignores quantity (“2 eggs” = same as “1 egg”)
 
-1. Copyright and Related Rights. A Work made available under CC0 may be
-protected by copyright and related or neighboring rights ("Copyright and
-Related Rights"). Copyright and Related Rights include, but are not
-limited to, the following:
+Now it:
 
-  i. the right to reproduce, adapt, distribute, perform, display,
-     communicate, and translate a Work;
- ii. moral rights retained by the original author(s) and/or performer(s);
-iii. publicity and privacy rights pertaining to a person's image or
-     likeness depicted in a Work;
- iv. rights protecting against unfair competition in regards to a Work,
-     subject to the limitations in paragraph 4(a), below;
-  v. rights protecting the extraction, dissemination, use and reuse of data
-     in a Work;
- vi. database rights (such as those arising under Directive 96/9/EC of the
-     European Parliament and of the Council of 11 March 1996 on the legal
-     protection of databases, and under any national implementation
-     thereof, including any amended or successor version of such
-     directive); and
-vii. other similar, equivalent or corresponding rights throughout the
-     world based on applicable law or treaty, and any national
-     implementations thereof.
+* detects numbers
+* multiplies nutrition
+* cleaner UI
+* better output
 
-2. Waiver. To the greatest extent permitted by, but not in contravention
-of, applicable law, Affirmer hereby overtly, fully, permanently,
-irrevocably and unconditionally waives, abandons, and surrenders all of
-Affirmer's Copyright and Related Rights and associated claims and causes
-of action, whether now known or unknown (including existing as well as
-future claims and causes of action), in the Work (i) in all territories
-worldwide, (ii) for the maximum duration provided by applicable law or
-treaty (including future time extensions), (iii) in any current or future
-medium and for any number of copies, and (iv) for any purpose whatsoever,
-including without limitation commercial, advertising or promotional
-purposes (the "Waiver"). Affirmer makes the Waiver for the benefit of each
-member of the public at large and to the detriment of Affirmer's heirs and
-successors, fully intending that such Waiver shall not be subject to
-revocation, rescission, cancellation, termination, or any other legal or
-equitable action to disrupt the quiet enjoyment of the Work by the public
-as contemplated by Affirmer's express Statement of Purpose.
+---
 
-3. Public License Fallback. Should any part of the Waiver for any reason
-be judged legally invalid or ineffective under applicable law, then the
-Waiver shall be preserved to the maximum extent permitted taking into
-account Affirmer's express Statement of Purpose. In addition, to the
-extent the Waiver is so judged Affirmer hereby grants to each affected
-person a royalty-free, non transferable, non sublicensable, non exclusive,
-irrevocable and unconditional license to exercise Affirmer's Copyright and
-Related Rights in the Work (i) in all territories worldwide, (ii) for the
-maximum duration provided by applicable law or treaty (including future
-time extensions), (iii) in any current or future medium and for any number
-of copies, and (iv) for any purpose whatsoever, including without
-limitation commercial, advertising or promotional purposes (the
-"License"). The License shall be deemed effective as of the date CC0 was
-applied by Affirmer to the Work. Should any part of the License for any
-reason be judged legally invalid or ineffective under applicable law, such
-partial invalidity or ineffectiveness shall not invalidate the remainder
-of the License, and in such case Affirmer hereby affirms that he or she
-will not (i) exercise any of his or her remaining Copyright and Related
-Rights in the Work or (ii) assert any associated claims and causes of
-action with respect to the Work, in either case contrary to Affirmer's
-express Statement of Purpose.
+## 💻 UPGRADED HTML + JS CODE
 
-4. Limitations and Disclaimers.
+Replace your file with this:
 
- a. No trademark or patent rights held by Affirmer are waived, abandoned,
-    surrendered, licensed or otherwise affected by this document.
- b. Affirmer offers the Work as-is and makes no representations or
-    warranties of any kind concerning the Work, express, implied,
-    statutory or otherwise, including without limitation warranties of
-    title, merchantability, fitness for a particular purpose, non
-    infringement, or the absence of latent or other defects, accuracy, or
-    the present or absence of errors, whether or not discoverable, all to
-    the greatest extent permissible under applicable law.
- c. Affirmer disclaims responsibility for clearing rights of other persons
-    that may apply to the Work or any use thereof, including without
-    limitation any person's Copyright and Related Rights in the Work.
-    Further, Affirmer disclaims responsibility for obtaining any necessary
-    consents, permissions or other rights required for any use of the
-    Work.
- d. Affirmer understands and acknowledges that Creative Commons is not a
-    party to this document and has no duty or obligation with respect to
-    this CC0 or use of the Work.
+```html id="upgraded-tool-92ks"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Calorie Calculator (Smart)</title>
+
+<style>
+body { font-family: Arial; background:#f4f4f4; padding:20px; }
+.container {
+  max-width:700px; margin:auto; background:#fff; padding:20px;
+  border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+textarea { width:100%; height:120px; padding:10px; }
+button {
+  width:100%; padding:12px; background:#28a745; color:#fff;
+  border:none; margin-top:10px; cursor:pointer;
+}
+.result { margin-top:20px; background:#e8ffe8; padding:15px; border-radius:8px; }
+.footer { text-align:center; margin-top:20px; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>🍽️ Smart Recipe Calorie Calculator</h1>
+
+<p>Example: <b>2 eggs, 1 toast, 1 cup milk</b></p>
+
+<textarea id="input"></textarea>
+<button onclick="calculate()">Calculate</button>
+
+<div id="result" class="result" style="display:none;"></div>
+
+<div class="footer">
+Powered by <a href="https://goodmorningmessages.xyz" target="_blank">Good Morning Messages</a>
+</div>
+</div>
+
+<script>
+
+const foodDB = {
+  egg:{cal:70, protein:6, carbs:1, fat:5},
+  toast:{cal:80, protein:3, carbs:15, fat:1},
+  milk:{cal:120, protein:8, carbs:12, fat:5},
+  rice:{cal:200, protein:4, carbs:45, fat:1},
+  chicken:{cal:250, protein:30, carbs:0, fat:10},
+  paneer:{cal:265, protein:18, carbs:6, fat:20},
+  butter:{cal:100, protein:0, carbs:0, fat:11},
+  bread:{cal:70, protein:2, carbs:13, fat:1},
+  banana:{cal:105, protein:1, carbs:27, fat:0},
+  apple:{cal:95, protein:0, carbs:25, fat:0}
+};
+
+function calculate() {
+  let input = document.getElementById("input").value.toLowerCase();
+  let items = input.split(",");
+
+  let total = {cal:0, protein:0, carbs:0, fat:0};
+
+  items.forEach(item => {
+    let qtyMatch = item.match(/\d+/);
+    let qty = qtyMatch ? parseInt(qtyMatch[0]) : 1;
+
+    for (let food in foodDB) {
+      if (item.includes(food)) {
+        total.cal += foodDB[food].cal * qty;
+        total.protein += foodDB[food].protein * qty;
+        total.carbs += foodDB[food].carbs * qty;
+        total.fat += foodDB[food].fat * qty;
+      }
+    }
+  });
+
+  document.getElementById("result").innerHTML = `
+    <h3>📊 Results</h3>
+    <p><b>Calories:</b> ${total.cal} kcal</p>
+    <p><b>Protein:</b> ${total.protein} g</p>
+    <p><b>Carbs:</b> ${total.carbs} g</p>
+    <p><b>Fat:</b> ${total.fat} g</p>
+  `;
+
+  document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+# 🚀 PART 2: GITHUB README (THIS GETS BACKLINKS)
+
+This is where most people fail. Don’t.
+
+---
+
+## 📄 COPY THIS README.md
+
+````markdown
+# 🍽️ Smart Recipe Calorie Calculator
+
+A simple, fast, and embeddable calorie calculator that converts plain text recipes into calorie and macro breakdown.
+
+## 🚀 Live Demo
+👉 https://your-tool-link.com
+
+---
+
+## 💡 Features
+
+- Text-based input (no dropdowns)
+- Quantity detection (e.g., "2 eggs")
+- Instant calorie + macro calculation
+- Lightweight & fast
+- Fully embeddable
+
+---
+
+## 🧪 Example Input
+
+2 eggs, 1 toast, 1 cup milk
+
+---
+
+## 📊 Output
+
+- Calories
+- Protein
+- Carbs
+- Fat
+
+---
+
+## 🔗 Embed This Tool (FREE)
+
+Copy this:
+
+```html
+<iframe src="https://your-tool-link.com" width="100%" height="500"></iframe>
+````
+
+---
+
+## 🎯 Use Cases
+
+* Food bloggers
+* Fitness websites
+* Diet planners
+* Recipe creators
+
+---
+
+## ⭐ Why This Tool?
+
+Most calorie calculators are slow and complicated.
+This tool is designed for speed and simplicity.
+
+---
+
+## 🔗 More Tools
+
+👉 [https://goodmorningmessages.xyz](https://goodmorningmessages.xyz)
+
+---
+
+## 📜 License
+
+Free to use and modify.
+
+```
+
+---
+
+# 🔥 HOW THIS GETS YOU BACKLINKS
+
+Now your system becomes:
+
+GitHub  
+→ developers find tool  
+→ bloggers embed iframe  
+→ your domain gets links  
+
+---
+
+# 💡 NEXT UPGRADE (DO THIS LATER)
+
+If you want real growth:
+
+- Add 100+ foods  
+- Add AI parsing  
+- Add recipe suggestions  
+- Add share button  
+
+---
+
+# 🧨 FINAL TRUTH
+
+Tool = 30%  
+Distribution = 70%  
+
+If you don’t promote:
+👉 no backlinks  
+
+---
+
+# 🚀 WHAT YOU DO NOW
+
+1. Deploy tool  
+2. Upload to GitHub  
+3. Add README  
+4. Share on Reddit + Twitter  
+
+---
+
+If you want next level, I can:
+- :contentReference[oaicite:0]{index=0}  
+- OR :contentReference[oaicite:1]{index=1}
+
+Say:
+👉 “AI version” or “launch strategy”
+```
