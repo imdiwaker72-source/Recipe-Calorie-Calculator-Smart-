@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Calorie Calculator (Smart)</title>
+
+<style>
+body { font-family: Arial; background:#f4f4f4; padding:20px; }
+.container {
+  max-width:700px; margin:auto; background:#fff; padding:20px;
+  border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+textarea { width:100%; height:120px; padding:10px; }
+button {
+  width:100%; padding:12px; background:#28a745; color:#fff;
+  border:none; margin-top:10px; cursor:pointer;
+}
+.result { margin-top:20px; background:#e8ffe8; padding:15px; border-radius:8px; }
+.footer { text-align:center; margin-top:20px; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>🍽️ Smart Recipe Calorie Calculator</h1>
+
+<p>Example: <b>2 eggs, 1 toast, 1 cup milk</b></p>
+
+<textarea id="input"></textarea>
+<button onclick="calculate()">Calculate</button>
+
+<div id="result" class="result" style="display:none;"></div>
+
+<div class="footer">
+Powered by <a href="https://goodmorningmessages.xyz" target="_blank">Good Morning Messages</a>
+</div>
+</div>
+
+<script>
+
+const foodDB = {
+  egg:{cal:70, protein:6, carbs:1, fat:5},
+  toast:{cal:80, protein:3, carbs:15, fat:1},
+  milk:{cal:120, protein:8, carbs:12, fat:5},
+  rice:{cal:200, protein:4, carbs:45, fat:1},
+  chicken:{cal:250, protein:30, carbs:0, fat:10},
+  paneer:{cal:265, protein:18, carbs:6, fat:20},
+  butter:{cal:100, protein:0, carbs:0, fat:11},
+  bread:{cal:70, protein:2, carbs:13, fat:1},
+  banana:{cal:105, protein:1, carbs:27, fat:0},
+  apple:{cal:95, protein:0, carbs:25, fat:0}
+};
+
+function calculate() {
+  let input = document.getElementById("input").value.toLowerCase();
+  let items = input.split(",");
+
+  let total = {cal:0, protein:0, carbs:0, fat:0};
+
+  items.forEach(item => {
+    let qtyMatch = item.match(/\d+/);
+    let qty = qtyMatch ? parseInt(qtyMatch[0]) : 1;
+
+    for (let food in foodDB) {
+      if (item.includes(food)) {
+        total.cal += foodDB[food].cal * qty;
+        total.protein += foodDB[food].protein * qty;
+        total.carbs += foodDB[food].carbs * qty;
+        total.fat += foodDB[food].fat * qty;
+      }
+    }
+  });
+
+  document.getElementById("result").innerHTML = `
+    <h3>📊 Results</h3>
+    <p><b>Calories:</b> ${total.cal} kcal</p>
+    <p><b>Protein:</b> ${total.protein} g</p>
+    <p><b>Carbs:</b> ${total.carbs} g</p>
+    <p><b>Fat:</b> ${total.fat} g</p>
+  `;
+
+  document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
