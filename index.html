@@ -3,85 +3,312 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Recipe Calorie Calculator (Smart)</title>
+<title>Smart Recipe Calorie Calculator</title>
 
 <style>
-body { font-family: Arial; background:#f4f4f4; padding:20px; }
-.container {
-  max-width:700px; margin:auto; background:#fff; padding:20px;
-  border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
 }
-textarea { width:100%; height:120px; padding:10px; }
-button {
-  width:100%; padding:12px; background:#28a745; color:#fff;
-  border:none; margin-top:10px; cursor:pointer;
+
+.container{
+    max-width:800px;
+    margin:auto;
+    background:#fff;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
-.result { margin-top:20px; background:#e8ffe8; padding:15px; border-radius:8px; }
-.footer { text-align:center; margin-top:20px; }
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+p{
+    color:#555;
+}
+
+textarea{
+    width:100%;
+    height:140px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    resize:none;
+    font-size:16px;
+    margin-top:10px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:15px;
+    border:none;
+    border-radius:8px;
+    background:#28a745;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#218838;
+}
+
+.result{
+    margin-top:20px;
+    background:#e9ffe9;
+    padding:20px;
+    border-radius:10px;
+    display:none;
+}
+
+.notfound{
+    margin-top:15px;
+    background:#ffe5e5;
+    color:#c00;
+    padding:10px;
+    border-radius:8px;
+}
+
+.footer{
+    margin-top:25px;
+    text-align:center;
+    font-size:14px;
+}
+
+.footer a{
+    color:#007bff;
+    text-decoration:none;
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
 <h1>🍽️ Smart Recipe Calorie Calculator</h1>
 
-<p>Example: <b>2 eggs, 1 toast, 1 cup milk</b></p>
+<p>
+Enter ingredients separated by commas.<br>
+Example: <b>2 eggs, 1 toast, 1 cup milk, 1 banana</b>
+</p>
 
-<textarea id="input"></textarea>
-<button onclick="calculate()">Calculate</button>
+<textarea id="input" placeholder="Enter your ingredients here..."></textarea>
 
-<div id="result" class="result" style="display:none;"></div>
+<button onclick="calculateCalories()">Calculate Calories</button>
+
+<div id="result" class="result"></div>
 
 <div class="footer">
-Powered by <a href="https://goodmorningmessages.xyz" target="_blank">Good Morning Messages</a>
+Powered by 
+<a href="https://goodmorningmessages.xyz" target="_blank">
+Good Morning Messages
+</a>
 </div>
+
 </div>
 
 <script>
 
 const foodDB = {
-  egg:{cal:70, protein:6, carbs:1, fat:5},
-  toast:{cal:80, protein:3, carbs:15, fat:1},
-  milk:{cal:120, protein:8, carbs:12, fat:5},
-  rice:{cal:200, protein:4, carbs:45, fat:1},
-  chicken:{cal:250, protein:30, carbs:0, fat:10},
-  paneer:{cal:265, protein:18, carbs:6, fat:20},
-  butter:{cal:100, protein:0, carbs:0, fat:11},
-  bread:{cal:70, protein:2, carbs:13, fat:1},
-  banana:{cal:105, protein:1, carbs:27, fat:0},
-  apple:{cal:95, protein:0, carbs:25, fat:0}
+
+egg:{cal:70,protein:6,carbs:1,fat:5},
+toast:{cal:80,protein:3,carbs:15,fat:1},
+milk:{cal:120,protein:8,carbs:12,fat:5},
+rice:{cal:200,protein:4,carbs:45,fat:1},
+chicken:{cal:250,protein:30,carbs:0,fat:10},
+paneer:{cal:265,protein:18,carbs:6,fat:20},
+butter:{cal:100,protein:0,carbs:0,fat:11},
+bread:{cal:70,protein:2,carbs:13,fat:1},
+banana:{cal:105,protein:1,carbs:27,fat:0},
+apple:{cal:95,protein:0,carbs:25,fat:0},
+
+oats:{cal:150,protein:5,carbs:27,fat:3},
+yogurt:{cal:100,protein:10,carbs:4,fat:5},
+cheese:{cal:113,protein:7,carbs:1,fat:9},
+salmon:{cal:208,protein:20,carbs:0,fat:13},
+tuna:{cal:132,protein:28,carbs:0,fat:1},
+potato:{cal:161,protein:4,carbs:37,fat:0},
+sweetpotato:{cal:180,protein:4,carbs:41,fat:0},
+tomato:{cal:22,protein:1,carbs:5,fat:0},
+onion:{cal:44,protein:1,carbs:10,fat:0},
+garlic:{cal:4,protein:0,carbs:1,fat:0},
+
+cucumber:{cal:16,protein:1,carbs:4,fat:0},
+carrot:{cal:25,protein:1,carbs:6,fat:0},
+broccoli:{cal:55,protein:4,carbs:11,fat:1},
+spinach:{cal:23,protein:3,carbs:4,fat:0},
+cabbage:{cal:33,protein:2,carbs:8,fat:0},
+cauliflower:{cal:25,protein:2,carbs:5,fat:0},
+peas:{cal:81,protein:5,carbs:14,fat:0},
+corn:{cal:96,protein:3,carbs:21,fat:1},
+mushroom:{cal:22,protein:3,carbs:3,fat:0},
+avocado:{cal:240,protein:3,carbs:12,fat:22},
+
+orange:{cal:62,protein:1,carbs:15,fat:0},
+grapes:{cal:104,protein:1,carbs:27,fat:0},
+mango:{cal:99,protein:1,carbs:25,fat:1},
+pineapple:{cal:82,protein:1,carbs:22,fat:0},
+watermelon:{cal:85,protein:2,carbs:21,fat:0},
+strawberry:{cal:49,protein:1,carbs:12,fat:0},
+blueberry:{cal:84,protein:1,carbs:21,fat:0},
+kiwi:{cal:42,protein:1,carbs:10,fat:0},
+pear:{cal:101,protein:1,carbs:27,fat:0},
+peach:{cal:59,protein:1,carbs:14,fat:0},
+
+almond:{cal:164,protein:6,carbs:6,fat:14},
+cashew:{cal:157,protein:5,carbs:9,fat:12},
+walnut:{cal:185,protein:4,carbs:4,fat:18},
+peanut:{cal:170,protein:7,carbs:6,fat:14},
+pistachio:{cal:159,protein:6,carbs:8,fat:13},
+raisin:{cal:129,protein:1,carbs:34,fat:0},
+dates:{cal:133,protein:1,carbs:36,fat:0},
+honey:{cal:64,protein:0,carbs:17,fat:0},
+sugar:{cal:49,protein:0,carbs:13,fat:0},
+chocolate:{cal:208,protein:2,carbs:24,fat:13},
+
+coffee:{cal:5,protein:0,carbs:0,fat:0},
+tea:{cal:2,protein:0,carbs:0,fat:0},
+juice:{cal:110,protein:2,carbs:26,fat:0},
+soda:{cal:150,protein:0,carbs:39,fat:0},
+pasta:{cal:221,protein:8,carbs:43,fat:1},
+noodles:{cal:190,protein:7,carbs:40,fat:1},
+pizza:{cal:285,protein:12,carbs:36,fat:10},
+burger:{cal:354,protein:17,carbs:29,fat:17},
+fries:{cal:312,protein:4,carbs:41,fat:15},
+sandwich:{cal:250,protein:12,carbs:30,fat:8},
+
+hotdog:{cal:290,protein:10,carbs:18,fat:20},
+sausage:{cal:229,protein:9,carbs:2,fat:21},
+bacon:{cal:161,protein:12,carbs:0,fat:12},
+shrimp:{cal:99,protein:24,carbs:0,fat:0},
+turkey:{cal:189,protein:29,carbs:0,fat:7},
+lentils:{cal:230,protein:18,carbs:40,fat:1},
+beans:{cal:245,protein:15,carbs:45,fat:1},
+chickpeas:{cal:269,protein:14,carbs:45,fat:4},
+tofu:{cal:144,protein:15,carbs:3,fat:9},
+quinoa:{cal:222,protein:8,carbs:39,fat:4},
+
+cereal:{cal:120,protein:3,carbs:25,fat:1},
+pancake:{cal:175,protein:5,carbs:30,fat:4},
+waffle:{cal:218,protein:6,carbs:25,fat:10},
+muffin:{cal:377,protein:5,carbs:53,fat:16},
+donut:{cal:195,protein:2,carbs:22,fat:11},
+icecream:{cal:207,protein:3,carbs:24,fat:11},
+cookie:{cal:160,protein:2,carbs:20,fat:8},
+cake:{cal:257,protein:3,carbs:38,fat:10},
+brownie:{cal:243,protein:3,carbs:32,fat:12},
+popcorn:{cal:106,protein:3,carbs:22,fat:1},
+
+chips:{cal:152,protein:2,carbs:15,fat:10},
+mayonnaise:{cal:94,protein:0,carbs:0,fat:10},
+ketchup:{cal:20,protein:0,carbs:5,fat:0},
+mustard:{cal:9,protein:1,carbs:1,fat:0},
+oliveoil:{cal:119,protein:0,carbs:0,fat:14},
+coconut:{cal:283,protein:3,carbs:12,fat:27},
+papaya:{cal:59,protein:1,carbs:15,fat:0},
+lemon:{cal:17,protein:1,carbs:5,fat:0},
+beetroot:{cal:43,protein:2,carbs:10,fat:0},
+zucchini:{cal:33,protein:2,carbs:6,fat:0},
+
+eggplant:{cal:35,protein:1,carbs:8,fat:0},
+asparagus:{cal:20,protein:2,carbs:4,fat:0},
+celery:{cal:10,protein:0,carbs:2,fat:0},
+radish:{cal:19,protein:1,carbs:4,fat:0},
+chai:{cal:120,protein:3,carbs:15,fat:5},
+biryani:{cal:290,protein:9,carbs:38,fat:10},
+dosa:{cal:168,protein:4,carbs:28,fat:4},
+idli:{cal:58,protein:2,carbs:12,fat:0},
+samosa:{cal:262,protein:4,carbs:31,fat:14},
+paratha:{cal:260,protein:6,carbs:30,fat:12},
+
+roti:{cal:85,protein:3,carbs:18,fat:0},
+naan:{cal:262,protein:8,carbs:45,fat:6},
+curry:{cal:180,protein:6,carbs:10,fat:14},
+dal:{cal:198,protein:12,carbs:30,fat:3}
+
 };
 
-function calculate() {
-  let input = document.getElementById("input").value.toLowerCase();
-  let items = input.split(",");
+function calculateCalories(){
 
-  let total = {cal:0, protein:0, carbs:0, fat:0};
+    let input = document.getElementById("input").value.toLowerCase();
 
-  items.forEach(item => {
-    let qtyMatch = item.match(/\d+/);
-    let qty = qtyMatch ? parseInt(qtyMatch[0]) : 1;
-
-    for (let food in foodDB) {
-      if (item.includes(food)) {
-        total.cal += foodDB[food].cal * qty;
-        total.protein += foodDB[food].protein * qty;
-        total.carbs += foodDB[food].carbs * qty;
-        total.fat += foodDB[food].fat * qty;
-      }
+    if(input.trim() === ""){
+        alert("Please enter ingredients");
+        return;
     }
-  });
 
-  document.getElementById("result").innerHTML = `
-    <h3>📊 Results</h3>
-    <p><b>Calories:</b> ${total.cal} kcal</p>
-    <p><b>Protein:</b> ${total.protein} g</p>
-    <p><b>Carbs:</b> ${total.carbs} g</p>
-    <p><b>Fat:</b> ${total.fat} g</p>
-  `;
+    let items = input.split(",");
 
-  document.getElementById("result").style.display = "block";
+    let total = {
+        cal:0,
+        protein:0,
+        carbs:0,
+        fat:0
+    };
+
+    let notFoundFoods = [];
+
+    items.forEach(item => {
+
+        item = item.trim();
+
+        let qtyMatch = item.match(/\d+/);
+
+        let qty = qtyMatch ? parseInt(qtyMatch[0]) : 1;
+
+        let found = false;
+
+        for(let food in foodDB){
+
+            if(item.includes(food)){
+
+                total.cal += foodDB[food].cal * qty;
+                total.protein += foodDB[food].protein * qty;
+                total.carbs += foodDB[food].carbs * qty;
+                total.fat += foodDB[food].fat * qty;
+
+                found = true;
+                break;
+            }
+        }
+
+        if(!found){
+            notFoundFoods.push(item);
+        }
+
+    });
+
+    let html = `
+        <h2>📊 Nutrition Breakdown</h2>
+
+        <p><b>Calories:</b> ${total.cal} kcal</p>
+
+        <p><b>Protein:</b> ${total.protein} g</p>
+
+        <p><b>Carbs:</b> ${total.carbs} g</p>
+
+        <p><b>Fat:</b> ${total.fat} g</p>
+    `;
+
+    if(notFoundFoods.length > 0){
+
+        html += `
+        <div class="notfound">
+            <b>❌ Not Found:</b><br>
+            ${notFoundFoods.join(", ")}
+        </div>
+        `;
+    }
+
+    document.getElementById("result").innerHTML = html;
+    document.getElementById("result").style.display = "block";
+
 }
 
 </script>
